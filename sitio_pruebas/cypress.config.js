@@ -12,6 +12,8 @@ export default defineConfig({
       reportDir: 'cypress/reports',
       overwrite: true,
       charts: true,
+      video: true,
+      code: true,
       embeddedScreenshots: true,
       html: true,
       json: false,
