@@ -1,0 +1,62 @@
+name: Pruebas Selenium
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  selenium-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Remove node_modules and package-lock.json
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+        working-directory: ./sitio_pruebas
+
+      - name: Install Node.js dependencies
+        run: npm install
+        working-directory: ./sitio_pruebas
+
+      - name: Start the application
+        run: npm run dev &
+        working-directory: ./sitio_pruebas
+        env:
+          CI: true
+
+      - name: Wait for application to be ready
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          until $(curl --output /dev/null --silent --head --fail http://localhost:5174); do
+            printf '.'
+            sleep 5
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Selenium
+        run: |
+          pip install --upgrade pip
+          pip install selenium
+
+      - name: Run Selenium test file
+        run: |
+          python ./selenium/pruebas_selenium/toma_screenshots.py
