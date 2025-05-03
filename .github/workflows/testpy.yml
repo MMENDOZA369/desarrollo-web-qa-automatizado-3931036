@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y curl
-          until $(curl --output /dev/null --silent --head --fail http://localhost:5174); do
+          until $(curl --output /dev/null --silent --head --fail http://localhost:5173); do
             printf '.'
             sleep 5
           done
