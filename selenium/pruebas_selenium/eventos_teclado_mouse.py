@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 
 try:
-    driver.get("http://localhost:5173/register")
+    driver.get("http://localhost:5174/register")
 
 
     seleccion = driver.find_element(By.ID, "name")

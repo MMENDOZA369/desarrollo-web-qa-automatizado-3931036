@@ -13,4 +13,5 @@ except Exception as e:
     print(f"Error en la prueba: {e}")
 
 finally:
+    time.sleep(6)
     driver.quit()

@@ -6,7 +6,7 @@ import os
 driver = webdriver.Chrome()
 
 try:
-    driver.get("http://localhost:5173/register")
+    driver.get("http://localhost:5174/register")
 
     seleccion = driver.find_element(By.ID, "name")
     seleccion.clear()
@@ -52,7 +52,7 @@ except Exception as e:
 
     driver.save_screenshot(screenshot_path)
 
-    print(f"Captura de pantalla guardada: {screenshot_path}")
+    print(f"Captura de pantalla guardada del error: {screenshot_path}")
 
 finally:
     driver.quit()

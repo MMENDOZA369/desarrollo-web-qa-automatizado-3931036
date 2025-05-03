@@ -1,11 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+import time
 
 driver = webdriver.Chrome()
 
 try:
-    driver.get("http://localhost:5173/")
+    driver.get("http://localhost:5174/")
 
     titular_interno = driver.find_elements(By.TAG_NAME, "h5")
 
@@ -23,4 +23,5 @@ except Exception as e:
     print(f"Error en la prueba: {e}")
 
 finally:
+    time.sleep(6)
     driver.quit()
